@@ -2,11 +2,11 @@ debug: true
 server:
   port: 8080
 spring:
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true #&autoReconnect=true&useSSL=false
-    username: root
-    password: root
+   datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
     platform: mysql
     initialization-mode: always
     testWhileIdle: true
@@ -19,14 +19,15 @@ spring:
     min-idle: 15
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
         id:
           new_generator_mappings: false
+
 
   jackson:
     serialization:
