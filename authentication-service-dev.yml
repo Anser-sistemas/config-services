@@ -1,0 +1,56 @@
+debug: true
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    platform: mysql
+    initialization-mode: always
+    testWhileIdle: true
+    validationQuery: SELECT 1
+
+  tomcat:
+    max-wait: 20000
+    max-active: 50
+    max-idle: 20
+    min-idle: 15
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        id:
+          new_generator_mappings: false
+
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: UTC
+
+prop:
+  swagger:
+    enabled: true
+
+security:
+  jwt:
+    header: Authorization
+    prefix: Bearer
+    secret: secret-key
+    expiration: 300000 # /60/1000
+    password-reset-duration: 3600000
+    refresh-duration: 2592000000
+    email-verification-duration: 3600000
+
+cache:
+  logoutToken:
+    maxSize: 1000
+
+velocity:
+  templates:
+    location: /templates/
